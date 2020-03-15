@@ -1,0 +1,25 @@
+version: '3'
+
+# Named volumes
+volumes:
+
+  uatu-postgres-data:
+    driver: local
+
+networks:
+  network:
+
+services:
+  uatu-postgres:
+    image: postgres:9.6
+    container_name: uatu-postgres
+    volumes:
+      - uatu-postgres-data:/var/lib/postgresql/data
+    networks: 
+      - network
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=uatu
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
